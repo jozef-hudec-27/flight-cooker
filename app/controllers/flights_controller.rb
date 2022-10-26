@@ -14,6 +14,7 @@ class FlightsController < ApplicationController
       day = flight_info.dig('date(3i)')
       date = Date.new(year.to_i, month.to_i, day.to_i)
 
+      @number_of_passengers = flight_info.dig(:num_of_passengers)
       @flights = Flight.where(departure_airport: departure_airport, arrival_airport: arrival_airport, date: date.all_day)
     end
   end

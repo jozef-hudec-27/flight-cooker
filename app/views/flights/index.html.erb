@@ -21,10 +21,12 @@
     <button type="submit">Search flights</button>
 <% end %>
 
+<br><br><br>
+
 <% if @flights&.any? %>
-    <div class="flights">
-        <% @flights.each do |flight| %>
-            <div class="flight"><%= flight.date.strftime('%b %e %Y %k:%M') %></div>
-        <% end %>
-    </div>
+    <%= form_with url: new_booking_path, method: :get, scope: :booked_flight do |f| %>
+        <%= f.hidden_field :num_of_passengers, value: @number_of_passengers %>
+        <%= f.collection_radio_buttons :id, @flights, :id, :date %><br>
+        <%= f.submit "Book a flight" %>
+    <% end %>
 <% end %>
