@@ -1,0 +1,30 @@
+<%= form_with method: :get, scope: :flight do |f| %>
+    <div class="form-field">
+        <%= f.label :departure_airport_code, 'Departure airport' %>
+        <%= f.select(:departure_airport_code, options_for_select(@airport_options)) %><br />
+    </div>
+
+    <div class="form-field">
+        <%= f.label :arrival_airport_code, 'Arrival airport' %>
+        <%= f.select(:arrival_airport_code, options_for_select(@airport_options)) %><br />
+    </div>
+
+    <div class="form-field">
+        <%= f.label :num_of_passengers, 'Number of passengers' %>
+        <%= f.select(:num_of_passengers, options_for_select(@passenger_options)) %><br />
+    </div>
+
+    <div class="form-field">
+        <%= f.date_select 'date' %><br />
+    </div>
+
+    <button type="submit">Search flights</button>
+<% end %>
+
+<% if @flights&.any? %>
+    <div class="flights">
+        <% @flights.each do |flight| %>
+            <div class="flight"><%= flight.date.strftime('%b %e %Y %k:%M') %></div>
+        <% end %>
+    </div>
+<% end %>
