@@ -9,6 +9,13 @@ class BookingsController < ApplicationController
 
   def create
     booking = Booking.create(booking_params)
+    redirect_to booking_path(booking)
+  end
+
+  def show
+    @booking = Booking.find_by(id: params[:id])
+    @flight = @booking.flight
+    @passengers = @booking.passengers
   end
 
   private
