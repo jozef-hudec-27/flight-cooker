@@ -16,6 +16,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find_by(id: params[:id])
     @flight = @booking.flight
     @passengers = @booking.passengers
+    @hours, @minutes = @flight.duration.divmod(60)
   end
 
   private
