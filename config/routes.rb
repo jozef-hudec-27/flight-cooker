@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root 'flights#index'
   get '/bookings/new', to: 'bookings#new', as: 'new_booking'
+  post '/bookings', to: 'bookings#create', as: 'bookings'
 end

@@ -1,1 +1,18 @@
-BOOK FLIGHT WITH ID: <%= @booked_flight&.id %>
+<h2>Book flight from <%=@booked_flight.departure_airport.code%> to <%=@booked_flight.arrival_airport.code%></h2>
+
+<%= form_with model: @booking do |f| %>
+    <%= f.label :flight_id, 'Flight ID' %>
+    <%= f.number_field :flight_id, value: @booked_flight.id, readonly: true %><br>
+
+    <h3>Passenger information:</h3>
+    <%= f.fields_for :passengers do |p| %>
+        <%= p.label :name %>
+        <%= p.text_field :name %>
+
+        <%= p.label :email%>
+        <%= p.email_field :email %><br>
+    <% end %>
+
+    <%= f.submit 'Submit booking' %>
+<% end %>
+
