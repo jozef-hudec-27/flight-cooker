@@ -1,0 +1,12 @@
+Flight booked
+
+======================================
+
+Thank you for booking a flight from <%=@booking.flight.departure_airport.code%> to <%=@booking.flight.arrival_airport.code%>.
+
+======================================
+
+Passengers:
+<% @booking.passengers.each do |passenger| %>
+    <%= passenger.name %>
+<% end %>

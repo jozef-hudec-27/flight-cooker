@@ -9,6 +9,9 @@ class BookingsController < ApplicationController
 
   def create
     booking = Booking.create(booking_params)
+
+    PassengerMailer.with(booking: booking).flight_booked.deliver_later
+
     redirect_to booking_path(booking)
   end
 
